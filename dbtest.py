@@ -1,35 +1,22 @@
 import sqlite3
 
-conn=sqlite3.connect('pms.db')
-cur=conn.cursor()
-cur.execute('''drop table Employee_Details''')
-cur.execute('''drop table Salary_Details''')
+def show_employee(self):
+    conn=sqlite3.connect('pms.db')
+    cur=conn.cursor()
+    cur.execute('''select * from Employee_Details''')
+    data=[]
+    for i in cur.fetchall():
+        context={}
+        context['EmployeeID']=i[0]
+        context['EmployeeName']=i[1]
+        context['DepartmentID']=i[2]
+        context['Designation']=i[3]
+        context['Email']=i[4]
+        context['ContactNo']=i[5]
+        data.append(context)
+    return data
 
-cur.execute('''create table Employee_Details (
-EmployeeID int primary key,
-Employee_Name varchar(50),
-DepartmentID int,
-Designation varchar(50),
-Email varchar(50),
-Contact_No int)''')
-cur.execute('''create table Salary_Details(
-EmployeeID int,
-DepartmentID int primary key,
-Account_No int,
-PAN varchar(50),
-Basic_Salary int,
-foreign key(EmployeeID) references Employees_Details(EmployeeID)     
-)''')
-cur.execute('''create table Attendence(
-            DepartmentID int ,
-            Department_Name varchar(50),
-            EmployeeID  int ,
-            Employee_Name varchar(50),
-            Date datetime,
-            Time_In datetime,
-            Time_Out datetime,
-            foreign key(EmployeeID) references Employee_details(EmployeeID),
-            foreign key(DepartmentID) references Salary_details(DepartmentID)
-            )''')
-conn.commit()
-conn.close()
+from employee import Employee
+emp=Employee()
+emp.attendance(DepartmentId=1,DepartmentName='ece',EmployeeId=1,EmployeeName='ravi',Date='12/6/2001',TimeIn='09:30',
+               TimeOut='05:30')

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Flask Application</title>
+    <style>
+        /* CSS styling */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+            background-size: 1400% 1400%;
+            animation: rainbowBackground 20s ease infinite;
+        }
+        
+        @keyframes rainbowBackground {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .section-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .section-buttons a {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .section-buttons a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Flask Application</h1>
+        
+        <div class="section">
+            <h2>Employee Signup</h2>
+            <div class="section-buttons">
+                <a href="/employee_signup">Signup</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Attendance</h2>
+            <div class="section-buttons">
+                <a href="/attendance">Mark Attendance</a>
+                <a href="/attendance_report">Attendance Report</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Payroll Release</h2>
+            <div class="section-buttons">
+                <a href="/payroll_release">Release Payroll</a>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Show Employees</h2>
+            <div class="section-buttons">
+                <a href="/employees">View Employees</a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // JavaScript for rainbow background animation
+        const body = document.querySelector("body");
+        let hue = 0;
+        
+        setInterval(() => {
+            hue = (hue + 1) % 360;
+            body.style.filter = `hue-rotate(${hue}deg)`;
+        }, 50);
+    </script>
+</body>
+</html>
