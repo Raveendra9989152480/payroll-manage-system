@@ -18,5 +18,6 @@ def show_employee(self):
 
 from employee import Employee
 emp=Employee()
-emp.attendance(DepartmentId=1,DepartmentName='ece',EmployeeId=1,EmployeeName='ravi',Date='12/6/2001',TimeIn='09:30',
-               TimeOut='05:30')
+#emp.attendance(DepartmentId=1,DepartmentName='ece',EmployeeId=1,EmployeeName='ravi',Date='12/6/2001',TimeIn='09:30',
+               #TimeOut='05:30')
+emp.salary(EmployeeID=1,DepartmentID=1,Account_No=12345678,PAN='anwj672k',Basic_Salary=20000)

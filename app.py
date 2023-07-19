@@ -45,6 +45,18 @@ def attendance():
         return jsonify({'Message':"successfully fetched the data"})
     
     return render_template('attendance.html')
+@app.route('/payroll_release', methods=['GET','POST'])
+def salary():
+    if request.method == 'POST':
+        employeeId = request.form.get('employeeID')
+        departmentId = request.form.get('departmentID')
+        accountNo= request.form.get('accountNo')
+        pan= request.form.get('PAN')
+        basicSalary= request.form.get('basicSalary')
+        emp=Employee()
+        emp.salary(EmployeeID=employeeId,DepartmentID=departmentId,Account_No=accountNo,PAN=pan,Basic_Salary=basicSalary)
+        return jsonify({'Message':"successfully fetched the data"})
+    return render_template('salary.html')
 if __name__== '__main__':
     app.run()
 

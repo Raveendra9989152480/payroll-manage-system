@@ -44,5 +44,15 @@ class Employee:
             "{k['TimeIn']}",
             "{k['TimeOut']}") ''')
         conn.commit()
-    
+    def salary (self,**k):
+        conn= sqlite3.connect('pms.db')
+        cur=conn.cursor()
+        cur.execute(f'''insert into Salary_Details
+            values({k['EmployeeID']},
+            {k['DepartmentID']},
+            {k['Account_No']},
+            "{k['PAN']}",
+            {k['Basic_Salary']}
+            )''')
+        conn.commit()
     
