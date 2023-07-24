@@ -24,9 +24,9 @@ class Employee:
         data=[]
         for i in cur.fetchall():
             context={}
-            context['EmployeeId']=i[0]
+            context['EmployeeID']=i[0]
             context['EmployeeName']=i[1]
-            context['DepartmentId']=i[2]
+            context['DepartmentID']=i[2]
             context['Designation']=i[3]
             context['Email']=i[4]
             context['ContactNo']=i[5]
@@ -55,4 +55,19 @@ class Employee:
             {k['Basic_Salary']}
             )''')
         conn.commit()
-    
+class SalaryCalculator:
+    def Salarycalculation(self,EmployeeID):
+        conn=sqlite3.connect('pms.db')
+        cur=conn.cursor()
+        cur.execute(f"select basic_salary from salary_details where employeeid={EmployeeID}")
+        bs=cur.fetchall()[0][0]
+        cur.execute(f'select date,time_in,time_out from attendence where employeeid={EmployeeID}')
+        gt=cur.fetchall()
+        print(bs)
+        print(gt)
+        hrs=bs/(22*8)
+        su=0
+        for i in gt:
+            g=(int(i[2][:2])-int(i[1][:2]))*hrs
+            su=su+g
+        return su
